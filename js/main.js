@@ -51,35 +51,81 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Event cho nút chọn gói
-  const packageBtns = document.querySelectorAll('.btn[data-amount]');
-  packageBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      const amount = this.dataset.amount;
-      const pack = this.dataset.pack;
-      const note = `NuoiTui ${pack} ${Date.now().toString().slice(-6)}`;
+  // const packageBtns = document.querySelectorAll('.btn[data-amount]');
+  // packageBtns.forEach(btn => {
+  //   btn.addEventListener('click', function() {
+  //     const amount = this.dataset.amount;
+  //     const pack = this.dataset.pack;
+  //     const note = `NuoiTui ${pack} ${Date.now().toString().slice(-6)}`;
 
-      if (qrModal) {
-        document.getElementById('modalTitle').innerHTML = `${pack}<br><strong style="font-size:2rem">${parseInt(amount).toLocaleString('vi-VN')}đ</strong>`;
-        document.getElementById('note').textContent = note;
+  //     if (qrModal) {
+  //       document.getElementById('modalTitle').innerHTML = `${pack}<br><strong style="font-size:2rem">${parseInt(amount).toLocaleString('vi-VN')}đ</strong>`;
+  //       document.getElementById('note').textContent = note;
 
-        // Xóa QR cũ
-        const qrDiv = document.getElementById('qrcode');
-        if (qrDiv) qrDiv.innerHTML = '';
+  //       // Xóa QR cũ
+  //       const qrDiv = document.getElementById('qrcode');
+  //       if (qrDiv) qrDiv.innerHTML = '';
 
-        // Tạo QR mới (thay link VietQR của mày ở đây)
-        if (typeof QRCode !== 'undefined') {
-          new QRCode(qrDiv, {
-            text: `https://img.vietqr.io/image/MB-0888888888-compact2.jpg?amount=${amount}&addInfo=${encodeURIComponent(note)}&accountName=TÊN CỦA MÀY`,
-            width: 280,
-            height: 280
-          });
-        }
+  //       // Tạo QR mới (thay link VietQR của mày ở đây)
+  //       if (typeof QRCode !== 'undefined') {
+  //         new QRCode(qrDiv, {
+  //           text: `https://img.vietqr.io/image/MB-0888888888-compact2.jpg?amount=${amount}&addInfo=${encodeURIComponent(note)}&accountName=TÊN CỦA MÀY`,
+  //           width: 280,
+  //           height: 280
+  //         });
+  //       }
 
-        qrModal.style.display = 'flex';
-        if (this.classList.contains('hot')) shootConfetti();
-      }
-    });
+  //       qrModal.style.display = 'flex';
+  //       if (this.classList.contains('hot')) shootConfetti();
+  //     }
+  //   });
+  // });
+  // THAY ĐOẠN NÀY TRONG js/main.js (khoảng dòng 80–100)
+document.querySelectorAll('.btn[data-amount]').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const amount = this.dataset.amount;
+    const pack = this.dataset.pack;
+    const note = `NuoiTui ${pack}`;
+
+    // Nội dung ngắn gọn để tránh lỗi overflow
+    const qrText = `https://img.vietqr.io/image/MB-0123456789-compact2.png?amount=${amount}&addInfo=${note}`;
+
+    document.getElementById('modalTitle').innerHTML = `${pack}<br><strong style="font-size:2rem">${parseInt(amount).toLocaleString('vi-VN')}đ</strong>`;
+    document.getElementById('note').textContent = note;
+
+    const qrDiv = document.getElementById('qrcode');
+    qrDiv.innerHTML = ''; // xóa cũ
+
+    // DÙNG ẢNH QR TĨNH HOẶC LINK NGẮN ĐỂ TRÁNH LỖI
+    // Cách 1: Dùng ảnh QR tĩnh (khuyên dùng, không bao giờ lỗi)
+    const staticQR = {
+      "Gói Cơ Bản": "images/qr-co-ban.jpg",
+      "Gói Tiêu Chuẩn": "images/qr-tieu-chuan.jpg",
+      "Gói VIP": "images/qr-vip.jpg",
+      "Gói Ultra VIP": "images/qr-ultra.jpg"
+    };
+
+    if (staticQR[pack]) {
+      const img = document.createElement('img');
+      img.src = staticQR[pack];
+      img.style.cssText = "width:280px;height:280px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.3);";
+      qrDiv.appendChild(img);
+    } else {
+      // Cách 2: Nếu vẫn muốn dùng QR động thì rút ngắn nội dung
+      new QRCode(qrDiv, {
+        text: qrText,
+        width: 280,
+        height: 280,
+        colorDark: "#000",
+        colorLight: "#fff",
+        correctLevel: QRCode.CorrectLevel.L   // ← QUAN TRỌNG: giảm level xuống L để chứa nội dung dài hơn
+      });
+    }
+
+    qrModal.style.display = 'flex';
+    if (this.classList.contains('hot')) shootConfetti();
   });
+});
 
   // FAQ accordion
   const faqQs = document.querySelectorAll('.faq-q');
@@ -245,6 +291,7 @@ const diaryEntries = [
   "Cảm ơn anh E đã nuôi tui cả năm, tui béo lên 4kg rồi",
   "Hôm nay tui đi ăn nhà hàng nhờ tiền của các boss F",
   "Cảm ơn anh Kiên đã tài trợ tôi làm tóc",
+  "Anh Hùng chuyển tiền mua đùi gà cho Bii",
   "Tui vừa đặt vé đi Đà Lạt nhờ chị G nuôi gói Ultra",
   "Vừa nhận được tiền làm móng từ anh Linh",
   "Cảm ơn tất cả các boss đã không để tui đói"
@@ -287,3 +334,92 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// === HIỆU ỨNG ĐẶC BIỆT CHO GÓI ULTRA VIP ===
+document.querySelectorAll('.btn[data-pack="Gói Ultra VIP"]').forEach(btn => {
+  btn.addEventListener('click', function() {
+    // 1. Bắn pháo hoa siêu to khổng lồ
+    confetti({
+      particleCount: 400,
+      spread: 120,
+      angle: 90,
+      startVelocity: 60,
+      decay: 0.95,
+      gravity: 0.5,
+      ticks: 300,
+      origin: { y: 0.3 },
+      colors: ['#ffd700', '#ff6b35', '#ff1493', '#00ff00', '#00bfff', '#ff4500']
+    });
+
+    // 2. Bắn thêm 2 bên trái phải
+    setTimeout(() => {
+      confetti({
+        particleCount: 200,
+        angle: 60,
+        spread: 70,
+        origin: { x: 0, y: 0.5 }
+      });
+      confetti({
+        particleCount: 200,
+        angle: 120,
+        spread: 70,
+        origin: { x: 1, y: 0.5 }
+      });
+    }, 300);
+
+    // 3. Bắn thêm vòng tròn vàng ở giữa
+    setTimeout(() => {
+      confetti({
+        particleCount: 100,
+        angle: 90,
+        spread: 360,
+        startVelocity: 45,
+        origin: { y: 0.5 },
+        colors: ['#ffd700', '#ffeb3b', '#fff700']
+      });
+    }, 600);
+
+    // 4. Thông báo siêu lầy
+    setTimeout(() => {
+      alert("CHÚC MỪNG ĐẠI GIA!!!\n\nTui sẽ làm osin cho boss cả đời này luôn!\nCảm ơn boss đã cứu đói cả dòng họ nhà tui");
+    }, 1000);
+
+    // 5. Rung nhẹ màn hình cho đã
+    document.body.classList.add('ultra-vip-shake');
+    setTimeout(() => document.body.classList.remove('ultra-vip-shake'), 1000);
+  });
+});
+
+// Dark Mode Toggle + lưu trạng thái
+// const darkToggle = document.getElementById('darkToggle');
+// if (darkToggle) {
+//   darkToggle.addEventListener('click', () => {
+//     document.body.classList.toggle('dark-mode');
+//     const isDark = document.body.classList.contains('dark-mode');
+//     darkToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+//     localStorage.setItem('darkMode', isDark);
+//   });
+
+//   // Load trạng thái cũ
+//   if (localStorage.getItem('darkMode') === 'true') {
+//     document.body.classList.add('dark-mode');
+//     darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
+//   }
+// }
+
+// // Back to Top
+// const backToTop = document.getElementById('backToTop');
+// window.addEventListener('scroll', () => {
+//   if (window.scrollY > 500) {
+//     backToTop.classList.add('show');
+//   } else {
+//     backToTop.classList.remove('show');
+//   }
+// });
+
+// backToTop.addEventListener('click', () => {
+//   window.scrollTo({ top: 0, behavior: 'smooth' });
+//   // Rocket bay khi click
+//   backToTop.style.animation = 'fly 1s ease-out';
+//   setTimeout(() => backToTop.style.animation = '', 1000);
+// });
