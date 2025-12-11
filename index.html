@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nuôi Tui Đi Mà – Chỉ 1.45 củ/năm là tui no cả năm</title>
+  <meta property="og:title" content="Nuôi Tui Đi Mà – Trà sữa + Netflix + Cơm tấm đang chờ boss"/>
+  <meta property="og:description" content="Dự án minh bạch 100% – giúp một đứa trẻ thành phố sống sót qua 2025"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+<!-- Header cố định -->
+<header>
+  <div class="container header-inner">
+    <div class="logo">Nuôi Tui Đi Mà</div>
+    <a href="#packages" class="btn-top">Ủng hộ ngay</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Nuôi Tui Đi Mà</h1>
+    <p class="subtitle">Dự án 100% minh bạch – giúp một đứa trẻ thành phố sống sót qua thời buổi vật giá leo thang</p>
+    <!-- Con gấu cute cầu xin nuôi -->
+<div class="cute-pet">
+  <div class="pet-body">
+    <!-- Đầu -->
+    <div class="pet-head">
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+      <div class="face">
+        <div class="eye left"><span class="sparkle"></span></div>
+        <div class="eye right"><span class="sparkle"></span></div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+        <div class="blush left"></div>
+        <div class="blush right"></div>
+      </div>
+    </div>
+    <!-- Tay cầm bảng -->
+    <div class="hand-sign">
+      <div class="sign">Nuôi tui đi mà</div>
+    </div>
+    <!-- Bụng đói -->
+    <div class="belly"></div>
+  </div>
+  <!-- Bong bóng thoại -->
+  <div class="speech-bubble" id="speech">Đói quá rồi...</div>
+</div>
+
+    <div class="stats">
+      <div class="stat"><h3>1</h3><p>Đứa được nuôi</p></div>
+      <div class="stat"><h3 id="donorCount">437</h3><p>Nhà hảo tâm</p></div>
+      <div class="stat"><h3>666</h3><p>Tỷ đồng mục tiêu</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Về tôi -->
+<section class="about">
+  <div class="container">
+    <h2 class="section-title">Về tui</h2>
+    <p class="about-subtitle" style="text-align:center;font-size:1.35rem;color:#555;max-width:900px;margin:0 auto 50px;">
+  Câu chuyện của một người trẻ đang cần sự hỗ trợ từ cộng đồng<br><br>
+  <strong>Hãy cùng nhìn, cùng xót xa, cùng yêu thương</strong><br>
+  Đây là một hành trình đầy cảm xúc và bài học.
+</p>
+    <div class="about-grid">
+      <img src="image/quynhcass.jpg" alt="Tui nè" class="about-img">
+      <div class="about-text">
+        <p>Xin chào các anh chị nuôi thân mến! Tui là một người trẻ đầy tham vọng, đang sống tại thành phố với chi phí sinh hoạt ngày càng cao ngất ngưởng.</p>
+        <p>Từ năm 2025, tui đã nhận ra rằng: <strong>“Tài sản lớn nhất của đời người là được người khác nuôi”</strong>. Đây là một mô hình thiện nguyện hoàn toàn mới, lấy cảm hứng từ các dự án thành công trước đó.</p>
+        <p>Với chỉ <strong>1.450.000đ/năm</strong>, các anh chị sẽ giúp tui có đủ tiền trà sữa, cơm văn phòng, Netflix, cà phê Highlands mỗi sáng và các nhu cầu thiết yếu khác.</p>
+        <p>Tui cam kết sử dụng tiền cực kỳ minh bạch (có thể công khai sau 15 ngày kiểm tra). </p>
+        <p><strong>Lưu ý:</strong> Chi phí vận hành 1 tỷ đồng/năm là được lấy từ tiền lãi tiết kiệm gửi ngân hàng, không tính vào khoản đóng góp của các anh chị đâu nhé. </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Calculator + Progress bar (thêm ngay dưới hero hoặc trên phần packages cũng được) -->
+<section class="tools-section">
+  <div class="container">
+
+    <!-- Calculator -->
+    <div class="tool-box calculator-box">
+      <h3>Nuôi tui với ngân sách của bạn</h3>
+      <p>Nhập số tiền bạn có thể dành mỗi tháng (đồng):</p>
+      <input type="number" id="monthlyBudget" placeholder="VD: 500000" min="0">
+      <button id="calcBtn">Tính ngay!</button>
+      <p id="calcResult" class="result-text"></p>
+    </div>
+
+    <!-- Progress bar mục tiêu tháng -->
+    <div class="tool-box progress-box">
+      <h3>Mục tiêu tháng 12/2025</h3>
+      <p>Mua iPhone 16 Pro Max 512GB (giá dự kiến)</p>
+      <div class="progress-wrapper">
+        <div class="progress-label">
+          <span>7.284.000đ</span>
+          <span>10.000.000đ</span>
+        </div>
+        <div class="progress-bar">
+          <div id="monthlyProgress"></div>
+        </div>
+        <div class="progress-percent">72.84%</div>
+      </div>
+      <button class="btn progress-donate">Donate ngay để tui có iPhone mới!</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Quiz Modal -->
+<div id="quizModal" class="modal">
+  <div class="modal-content quiz-modal">
+    <span class="close">×</span>
+    <h2>Làm quiz để chọn gói nuôi tui nào</h2>
+    <div id="quizContent">
+      <p><strong>Câu 1/4:</strong> Bạn thích uống gì hơn?</p>
+      <button class="quiz-option" data-value="tra-sua">Trà sữa size L</button>
+      <button class="quiz-option" data-value="ca-phe">Cà phê Starbucks</button>
+    </div>
+    <p id="quizProgress">1/4</p>
+  </div>
+</div>
+<!-- Packages -->
+<section class="packages-section" id="packages">
+  <div class="container">
+    <h2 class="section-title">Chọn gói nuôi tui nào boss</h2>
+    <div class="packages">
+      <!-- Gói Cơ Bản -->
+      <div class="package">
+        <div class="package-header">
+          <h3>Gói Cơ Bản</h3>
+          <div class="price">450.000<span>đ</span><small>/3 tháng</small></div>
+        </div>
+        <div class="features">
+          <ul>
+            <li><i class="fas fa-check"></i> Trà sữa 45 ly</li>
+            <li><i class="fas fa-check"></i> Cơm văn phòng 60 bữa</li>
+            <li><i class="fas fa-times"></i> Netflix (dùng chung)</li>
+            <li><i class="fas fa-check"></i> Ảnh cập nhật định kỳ</li>
+          </ul>
+          <button class="btn" data-amount="450000" data-pack="Gói Cơ Bản">Chọn gói này</button>
+        </div>
+      </div>
+
+      <!-- Gói Tiêu Chuẩn (HOT) -->
+      <div class="package popular">
+        <div class="package-header" style="background:#237804">
+          <h3>Gói Tiêu Chuẩn</h3>
+          <div class="price">1.450.000<span>đ</span><small>/năm</small></div>
+        </div>
+        <div class="features">
+          <ul>
+            <li><i class="fas fa-check"></i> Trà sữa + cà phê không giới hạn</li>
+            <li><i class="fas fa-check"></i> Cơm văn phòng 365 bữa</li>
+            <li><i class="fas fa-check"></i> Netflix Premium 4K</li>
+            <li><i class="fas fa-check"></i> Xăng xe 5 củ/năm</li>
+            <li><i class="fas fa-crown" style="color:gold"></i> Mã NT độc quyền</li>
+            <li><i class="fas fa-video"></i> Video call 10 phút/tháng</li>
+          </ul>
+          <button class="btn hot" data-amount="1450000" data-pack="Gói Tiêu Chuẩn">HOT NHẤT – Chọn ngay!</button>
+        </div>
+      </div>
+
+      <!-- Gói VIP -->
+      <div class="package">
+        <div class="package-header" style="background:#1e6b00">
+          <h3>Gói VIP</h3>
+          <div class="price">5.000.000<span>đ</span><small>/năm</small></div>
+        </div>
+        <div class="features">
+          <ul>
+            <li><i class="fas fa-crown" style="color:gold"></i> Starbucks mỗi ngày</li>
+            <li><i class="fas fa-crown" style="color:gold"></i> Ăn nhà hàng 2 lần/tháng</li>
+            <li><i class="fas fa-crown" style="color:gold"></i> Du lịch 1 chuyến/năm</li>
+            <li><i class="fas fa-crown" style="color:gold"></i> Tên khắc lên web vĩnh viễn</li>
+            <li><i class="fas fa-tshirt"></i> Áo “Boss đang nuôi tui”</li>
+          </ul>
+          <button class="btn" data-amount="5000000" data-pack="Gói VIP">Làm đại gia luôn!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gói Ultra VIP + Lợi ích hài hước mới -->
+<style>
+.ultra-package { background: linear-gradient(135deg, #722ed1, #d3adf7); color:white; }
+.ultra-package .price { font-size:4rem; }
+.fun-benefit { font-style:italic; color:#ffeb3b; margin:8px 0; font-weight:bold; }
+</style>
+
+<div class="package ultra-vip" style="grid-column:1/-1;margin-top:40px;">
+  <div class="package-header ultra-package">
+    <h3>Gói Ultra VIP – Đại Gia Chỉ Đường</h3>
+    <div class="price">50.000.000đ <small>/ năm</small></div>
+    <p class="fun-benefit">→ Tui sẽ làm osin cho boss 1 ngày (có hợp đồng công chứng)</p>
+  </div>
+  <div class="features" style="color:#333">
+    <ul>
+      <li>Tui dọn nhà, nấu cơm, giặt đồ cho boss</li>
+      <li>Mặc áo in mặt boss đi khắp Sài Gòn</li>
+      <li>Đặt tên con sau này là tên boss</li>
+      <li>Gọi boss là "sugar daddy/mommy" công khai</li>
+      <li>Quyền ưu tiên book lịch tui 24/7</li>
+    </ul>
+    <button class="btn" data-amount="50000000" data-pack="Gói Ultra VIP">Làm đại gia ngay!</button>
+  </div>
+</div>
+
+<!-- Nhật ký được nuôi (tự cập nhật) -->
+<section class="diary">
+  <div class="container">
+    <h2 class="section-title">Nhật ký được nuôi (cập nhật realtime)</h2>
+    <div id="diaryFeed" class="diary-feed"></div>
+  </div>
+</section>
+
+<!-- Referral -->
+<section class="referral" style="background:var(--light);padding:100px 0;text-align:center;">
+  <div class="container">
+    <h2>Chương trình giới thiệu bạn bè</h2>
+    <p style="font-size:1.4rem;margin:30px 0;max-width:800px;margin-left:auto;margin-right:auto;">
+      Share link này cho bạn bè, mỗi người donate = bạn được <strong>+1 ly trà sữa miễn phí (trong tưởng tượng)</strong>
+    </p>
+    <div style="display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:15px;">
+      <input type="text" value="https://nuoitui.di.ma/?ref=NT1234" readonly id="refLink" 
+             style="padding:16px;width:380px;max-width:90%;border-radius:12px;border:2px solid var(--main);text-align:center;font-size:1.1rem;">
+      <button id="copyBtn" 
+              style="padding:16px 34px;background:var(--main);color:white;border:none;border-radius:12px;font-weight:bold;cursor:pointer;">
+        Copy link
+      </button>
+    </div>
+    <p id="copyMsg" style="margin-top:20px;color:var(--main);font-weight:bold;height:30px;"></p>
+  </div>
+</section>
+<!-- Báo cáo tài chính minh bạch -->
+<section class="transparency">
+  <div class="container">
+    <h2 class="section-title">Báo cáo tài chính minh bạch</h2>
+    <p class="text-center mb-4">Chúng tôi cam kết công khai 100% thu chi (sau 15 ngày đóng băng tài khoản để kiểm tra)</p>
+    <div class="alert-box">Thông báo quan trọng: Để đảm bảo tính minh bạch và chính xác, tài khoản hiện đang được đóng băng trong 15 ngày để thông kê thu-chi. Cảm ơn sự kiên nhẫn của quý vị!</div>
+
+    <h3 class="sub-title">Chi tiết sử dụng 1.450.000đ/năm</h3>
+    <div class="trans-table">
+      <div class="trans-row"><span>Trà sữa (45.000đ × 180 ly)</span><strong>810.000đ</strong></div>
+      <div class="trans-row"><span>Cơm văn phòng (25.000đ × 200 bữa)</span><strong>500.000đ</strong></div>
+      <div class="trans-row"><span>Netflix Premium</span><strong>260.000đ</strong></div>
+      <div class="trans-row"><span>Cafe Highlands (mỗi sáng)</span><strong>1.095.000đ</strong></div>
+      <div class="trans-row"><span>Thời đại anh hùng</span><strong>550.000đ</strong></div>
+      <div class="trans-row"><span>Chăm sóc cá nhân</span><strong>850.000đ</strong></div>
+      <div class="trans-row"><span>Quà sinh nhật bản thân</span><strong>2.000.000đ</strong></div>
+      <div class="trans-row"><span>Data 4G không giới hạn</span><strong>360.000đ</strong></div>
+      <div class="trans-row"><span>Rạp phim (2 lần/tháng)</span><strong>600.000đ</strong></div>
+      <div class="trans-row"><span>Chi phí khác (bí mật)</span><strong>3.425.000đ</strong></div>
+      <div class="trans-row total"><span>TỔNG CỘNG</span><strong style="color:#52c41a;font-size:2rem">10.450.000đ</strong></div>
+    </div>
+    <p class="note">* Đừng lo, phần chênh lệch sẽ được bù trừ lại tiết kiệm của các khoản đóng góp trước đó!<br>** Có thể có sai số do lỗi bàn phím giao dịch các tỉnh nguyện viên</p>
+  </div>
+</section>
+
+<!-- Lời nhận xét từ nhà hảo tâm -->
+<section class="testimonials">
+  <div class="container">
+    <h2 class="section-title">Lời nhận xét từ nhà hảo tâm</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial"><p>“Tui đã ủng hộ 500 triệu đồng từ MV ‘Nấu mì cho em’. Dự án này thật ý nghĩa…”</p><strong>Rapper D.V</strong></div>
+      <div class="testimonial"><p>“600 triệu không phải con số nhỏ, nhưng nhìn thấy người được nuôi có cuộc sống tốt hơn thì rất vui…”</p><strong>Ca sĩ H.M</strong></div>
+      <div class="testimonial"><p>“Tui đã nuôi được 7 năm rồi và thấy rất minh bạch! Chỉ là họ chưa trả lời tin nhắn của tui được 3 tháng thôi…”</p><strong>Chị T.T.T</strong></div>
+      <div class="testimonial"><p>“Blockchain là tương lai! Nếu dự án này dùng blockchain thì sẽ không có tranh cãi…”</p><strong>5 Phút Crypto</strong></div>
+      <div class="testimonial"><p>“Tui được nhận mã NT-12345 nhưng 3 tháng sau lại thấy mã này thuộc về người khác. Có lẽ do lệch pha thời gian đóng góp…”</p><strong>Anh A.P</strong></div>
+      <div class="testimonial"><p>“Tui làm tình nguyện viên được 5 ngày thì nghỉ vì công việc chủ yếu là… đòi tiền…”</p><strong>Cô M.L</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <h2 class="section-title">Câu hỏi thường gặp</h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">Tại sao phải nuôi bạn?<span>+</span></div><div class="faq-a">Bởi vì tôi là một phần của cộng đồng, và cộng đồng cần chăm sóc mọi thành viên. Việc nuôi tôi không chỉ giúp tôi có cuộc sống tốt hơn, mà còn tạo ra một mô hình thiện nguyện mới, đột phá và... đầy cảm hứng. <STRONG>QUAN TRỌNG LÀ TÔI XINH</STRONG> và đang đói.</div></div>
+      <div class="faq-item"><div class="faq-q">Tiền của tui đi đâu?<span>+</span></div><div class="faq-a">Vào tài khoản cá nhân của tôi. Tôi sẽ dùng để mua đồ ăn, làm đẹp, tài khoản Netflix, còn lại là các khoản thiết yếu khác. Chúng tôi có thể công khai sao kê sau 15 ngày đóng băng tài khoản để kiểm tra.</div></div>
+      <div class="faq-item"><div class="faq-q">Mã Nuôi Tui (NT) là gì?<span>+</span></div><div class="faq-a">Mã NT là mã định danh độc quyền cho mỗi nhà hảo tâm. Tuy nhiên, do lỗi bàn giao giữa các tình nguyện viên, có thể một mã sẽ được cấp cho nhiều người. Đây không phải là lỗi hệ thống, mà là tính năng để bảo vệ quyền riêng tư của... tôi.</div></div>
+      <div class="faq-item"><div class="faq-q">Tại sao chi phí vận hành lại hơn 1 tỷ/năm?<span>+</span></div><div class="faq-a">Chi phí vận hành bao gồm: liên lạc với nhà hảo tâm (data 4G), khảo sát nhu cầu (đi cafe để suy nghĩ), hỗ trợ tình nguyện viên (1,5-3 triệu/lượt), và các chi phí quản lý khác. Đừng lo, khoản này không lấy từ tiền đóng góp của bạn đâu - nó được lấy từ lãi tiết kiệm của các khoản tiền... đóng góp của người khác.</div></div>
+      <div class="faq-item"><div class="faq-q">Tui có được xem ảnh cập nhật không?<span>+</span></div><div class="faq-a">Có chứ! Tùy vào gói ủng hộ, bạn sẽ nhận được ảnh cập nhật định kỳ về cuộc sống của tôi. Từ bữa trà sữa buổi chiều, đến màn hình Netflix đang xem, và cả selfie khi đi du lịch (gói VIP). Mọi thứ đều minh bạch và đầy... cảm xúc.... Nhưng chỉ khi tui nhớ.</div></div>
+      <div class="faq-item"><div class="faq-q">Nếu tui nghi ngờ có sai phạm thì làm sao?<span>+</span></div><div class="faq-a">Hãy chờ đợi kết luận chính thức từ cơ quan chức năng (hoặc bạn tôi). Trong thời gian chờ, tài khoản đã được đóng băng 15 ngày để kiểm tra. Nếu có sai phạm, chúng tôi cam kết xử lý nghiêm minh. Nếu không có, chúng tôi sẽ tiếp tục hoạt động và mong nhận được sự ủng hộ của bạn!</div></div>
+      <div class="faq-item"><div class="faq-q">Tại sao tổng chi phí lại nhiều hơn 1,45 triệu?<span>+</span></div><div class="faq-a">Đó là sức mạnh của "hiệu ứng cộng đồng"! Khi nhiều người cùng đóng góp, tổng số tiền sẽ lớn hơn và tôi có thể nâng cao chất lượng cuộc sống. Phần chênh lệch cũng có thể do tôi tính nhầm, hoặc do tỷ giá trà sữa tăng. Nhưng đừng lo, mọi thứ đều nằm trong tầm kiểm soát... của tôi.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Tạo mã Nuôi Tui -->
+<section class="nt-code">
+  <div class="container">
+    <h2 class="section-title" style="color:white">Tạo mã Nuôi Tui của bạn</h2>
+    <p style="color:#fff9; text-align:center;margin-bottom:40px;">Nhận ngay mã NT độc quyền (có thể trùng với người khác)</p>
+    <div class="code-box">
+      <p>MÃ NUÔI TUI (NT) CỦA BẠN</p>
+      <h3 id="ntCode">NT-0000</h3>
+      <button id="generateBtn" class="btn" style="background:white;color:#52c41a;">Tạo mã mới</button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer – Đã thêm full icon mạng xã hội -->
+<footer>
+  <div class="container footer-grid">
+    <!-- Cột 1: Giới thiệu -->
+    <div>
+      <h4 class="footer-title">Nuôi Tui Đi Mà</h4>
+      <p>Dự án thiện nguyện tiên phong trong việc nâng cao chất lượng cuộc sống cho một cá nhân cụ thể (chính là tui).</p>
+      <p style="font-style:italic;margin-top:15px;">“Tui ăn no, cả làng vui” – Châm ngôn dự án</p>
+    </div>
+
+    <!-- Cột 2: Liên hệ -->
+    <div>
+      <h4 class="footer-title">Liên hệ</h4>
+      <p>Email: support@nuoitui.vn<br>
+         Hotline: 1900-NUOI-TUI<br>
+         TikTok: @tui.dang.doi<br>
+         STK: 123456789 – Ngân hàng Tình Thương</p>
+    </div>
+
+    <!-- Cột 3: Liên kết nhanh + Icon MXH -->
+    <div>
+      <h4 class="footer-title">Liên kết</h4>
+      <p>Ủng hộ ngay<br>Báo cáo tài chính<br>Xem sao kê (sau 15 ngày)<br>Câu hỏi thường gặp</p>
+
+      <!-- Icon mạng xã hội -->
+      <div class="social-icons" style="margin-top:25px;">
+        <a href="https://facebook.com/nuoitui" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com/nuoitui" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/@tui.dang.doi" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://zalo.me/0909123456" target="_blank" aria-label="Zalo"><i class="fas fa-comment-dots"></i></a>
+      </div>
+    </div>
+
+    <!-- Cột 4: Pháp lý (troll) -->
+    <div>
+      <h4 class="footer-title">Pháp lý</h4>
+      <p>Giấy phép: Đang chờ cấp<br>
+         Kiểm toán: Bản thân tui<br>
+         Hình thức: Nhóm tình nguyện</p>
+      <p style="font-size:0.9rem;margin-top:20px;">
+        © 2025 Nuôi Tui. Bản quyền thuộc về tui.<br>
+        Nghiêm cấm sao chép khi chưa xin phép<br>
+        <span style="color:#ff4d4f">(nhưng cứ sao chép đi tui không kiện đâu)</span>
+      </p>
+    </div>
+  </div>
+</footer>
+<!-- Modal QR -->
+<div id="qrModal" class="modal">
+  <div class="modal-content">
+    <span class="close">×</span>
+    <h2>Quét để nuôi tui nha boss</h2>
+    <p id="modalTitle" style="font-size:1.4rem;margin:15px 0"></p>
+    <div id="qrcode"></div>
+    <p style="margin:20px 0">Nội dung chuyển khoản:<br><strong id="note" style="color:#52c41a"></strong></p>
+    <button id="doneBtn" class="btn">Đã chuyển xong, cho tui ăn với!</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
