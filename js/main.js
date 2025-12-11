@@ -244,7 +244,9 @@ const diaryEntries = [
   "Chị D gửi 5 triệu, tui mua iPhone 15 Pro Max rồi nha",
   "Cảm ơn anh E đã nuôi tui cả năm, tui béo lên 4kg rồi",
   "Hôm nay tui đi ăn nhà hàng nhờ tiền của các boss F",
+  "Cảm ơn anh Kiên đã tài trợ tôi làm tóc",
   "Tui vừa đặt vé đi Đà Lạt nhờ chị G nuôi gói Ultra",
+  "Vừa nhận được tiền làm móng từ anh Linh",
   "Cảm ơn tất cả các boss đã không để tui đói"
 ];
 
