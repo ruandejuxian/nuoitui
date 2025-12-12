@@ -1,10 +1,19 @@
-:root {
+/*:root {
   --main: #52c41a;
   --main-dark: #237804;
   --accent: #ffeb3b;
   --light: #f6ffed;
   --text: #1a1a1a;
   --gray: #fafafa;
+}
+*/
+:root {
+  --main: #ff6bc2;        /* hồng chính */
+  --main-dark: #e91e63;   /* hồng đậm khi hover */
+  --accent: #ffd1e3;      /* hồng phấn nhạt */
+  --light: #fff0f8;       /* nền nhạt hồng */
+  --text: #2d1b3a;
+  --gray: #fff5f9;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -56,7 +65,7 @@ header { position:fixed; top:0; left:0; right:0; background:var(--main); color:#
   top: -8px;
   left: 50%;
   transform: translateX(-50%);
-  background: #ffeb3b;
+  /*background: #ffeb3b;*/
   color: #000;
   font-weight: 900;
   font-size: 1rem;
@@ -493,6 +502,41 @@ body.dark-mode #darkToggle i.fa-sun { display: block; }
   50%  { transform: translateY(-300px) rotate(45deg); }
   100% { transform: translateY(0) rotate(0); }
 }*/
+
+/* Themes màu hường */
+/* Nút HOT vẫn đỏ để nổi bật */
+.popular .btn.hot { background: #ff1744 !important; }
+
+/* Header + hero gradient hồng */
+header { background: linear-gradient(135deg, #ff9aea, #ff6bc2); }
+.hero { background: linear-gradient(135deg, #ff9aea, #ff6bc2); }
+
+/* Nút Ủng hộ ngay + các nút chính */
+.btn-top,
+.btn,
+#copyBtn,
+.progress-donate,
+.quiz-option:hover {
+  background: #ff6bc2 !important;
+  color: white !important;
+}
+.btn-top:hover,
+.btn:hover {
+  background: #e91e63 !important;
+  transform:hover {
+  transform: scale(1.08);
+}
+
+/* Badge phổ biến nhất */
+.popular::before {
+  background: #fff0f8;
+  color: #e91e63;
+}
+
+/* Progress bar */
+#monthlyProgress {
+  background: linear-gradient(90deg, #ff6bc2, #ff9aea);
+}
 
 /* Responsive */
 @media (max-width:992px) {
