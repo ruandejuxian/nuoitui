@@ -65,7 +65,7 @@ header { position:fixed; top:0; left:0; right:0; background:var(--main); color:#
   top: -8px;
   left: 50%;
   transform: translateX(-50%);
-  /*background: #ffeb3b;*/
+  background: #ffeb3b;
   color: #000;
   font-weight: 900;
   font-size: 1rem;
@@ -128,7 +128,7 @@ header { position:fixed; top:0; left:0; right:0; background:var(--main); color:#
 .faq-a.open { padding:30px 35px; max-height:800px; }
 
 /* NT Code */
-.nt-code { padding:140px 20px; background:linear-gradient(135deg,var(--main),#389e0d); text-align:center; color:#fff; }
+.nt-code { padding:140px 20px; background:linear-gradient(135deg,var(--main),#c89cba); text-align:center; color:#fff; }
 .code-box { background:#fff; color:var(--main); padding:50px; border-radius:32px; max-width:500px; margin:0 auto; box-shadow:0 20px 60px rgba(0,0,0,.2); }
 .code-box p { font-size:1.2rem; margin-bottom:15px; }
 #ntCode { font-size:3.5rem; font-weight:900; margin:20px 0; letter-spacing:8px; }
@@ -194,7 +194,7 @@ footer {
 .progress-wrapper { margin:30px 0; }
 .progress-label { display:flex; justify-content:space-between; font-weight:bold; margin-bottom:10px; }
 .progress-bar { height:30px; background:#e0e0e0; border-radius:15px; overflow:hidden; position:relative; }
-#monthlyProgress { height:100%; width:72.84%; background:linear-gradient(90deg, #52c41a, #95de64); transition:width 2s ease; }
+#monthlyProgress { height:100%; width:72.84%; background:linear-gradient(90deg, #da9cb5, #e752cc); transition:width 2s ease; }
 .progress-percent { text-align:center; margin-top:15px; font-size:1.8rem; font-weight:900; color:var(--main); }
 
 /* Quiz */
